@@ -77,7 +77,7 @@ deleteNodeFromFront = head => {
 		console.log("Linkedlist is empty");
 		return head;
 	}
-	temp = head.next;
+	let temp = head.next;
 	head = temp;
 	return head;
 }
@@ -87,7 +87,7 @@ deleteNodeFromEnd = head => {
 		console.log("Linkedlist is empty");
 		return head;
 	}
-	temp = head;
+	let temp = head;
 	while((temp.next).next !== null)
 		temp = temp.next;
 	temp.next = null;
@@ -106,12 +106,43 @@ deleteFromPosition = (position , head) => {
 			console.log("No node exist at this position")
 			return head;
 		}
-		temp = temp.next;
+		let temp = temp.next;
 	}
 	if(temp.next === null){
 		console.log("No node exist at this position")
 		return head;
 	}
 	temp.next = (temp.next).next;
+	return head;
+}
+
+reverceALinkedlist = head => {
+	if(head === null){
+		console.log("Empty linked list");
+		return head;
+	}
+	if(head.next === null){
+		return head;
+	}
+	if((head.next).next ===null){
+		let temp = head.next;
+		temp.next = head;
+		head.next = null;
+		head = temp;
+		return head;
+	}
+	let ptr = head.next;
+	let prev = head;
+	let nxt = (head.next).next;
+	prev.next = null;
+	while(nxt.next !== null) {
+		ptr.next = prev;
+		prev = ptr;
+		ptr = nxt;
+		nxt = nxt.next;  
+	}
+	ptr.next = prev;
+	nxt.next = ptr;
+	head = nxt;
 	return head;
 }
