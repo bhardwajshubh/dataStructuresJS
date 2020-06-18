@@ -5,7 +5,7 @@ Node = function () {
 
 
 
-addNodeAtBegining = function(data , head) {
+addNodeAtBegining = (data , head) => {
 	const newNode = new Node(data);
 	newNode.data = data;
 	if(head === null){
@@ -17,7 +17,7 @@ addNodeAtBegining = function(data , head) {
 	return head
 }
 
-linkedTraversal = function(head){
+linkedTraversal = head => {
 	if(head === null){
 		console.log("Linked list is empty");
 		return;
@@ -68,5 +68,50 @@ addNodeBetweenNode = (data , position , head) => {
 	}
 	newNode.next = nxt.next;
 	nxt.next = newNode;
+	return head;
+}
+
+
+deleteNodeFromFront = head => {
+	if(head === null){
+		console.log("Linkedlist is empty");
+		return head;
+	}
+	temp = head.next;
+	head = temp;
+	return head;
+}
+
+deleteNodeFromEnd = head => {
+	if(head === null){
+		console.log("Linkedlist is empty");
+		return head;
+	}
+	temp = head;
+	while((temp.next).next !== null)
+		temp = temp.next;
+	temp.next = null;
+	return head;
+}
+
+deleteFromPosition = (position , head) => {
+	if(head === null){
+		console.log("Linkedlist is empty");
+		return head;	
+	}
+	position -= 1;
+	temp = head;
+	for(let i = 0 ; i < position-1 ; i++){
+		if(temp === null){
+			console.log("No node exist at this position")
+			return head;
+		}
+		temp = temp.next;
+	}
+	if(temp.next === null){
+		console.log("No node exist at this position")
+		return head;
+	}
+	temp.next = (temp.next).next;
 	return head;
 }
