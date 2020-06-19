@@ -4,7 +4,7 @@ const Node = function (){
 	this.right = null
 } 
 
-insertElement = (data , root) => {
+const insertElement = (data , root) => {
 	newNode = new Node();
 	newNode.data = data;
 	if(root === null){
@@ -33,7 +33,7 @@ insertElement = (data , root) => {
 	}
 }
 
-insertElementRecursive = (data , root) => {
+const insertElementRecursive = (data , root) => {
 	if(root === null){
 		newNode = new Node();
 		newNode.data = data;
@@ -55,7 +55,7 @@ insertElementRecursive = (data , root) => {
 	return root;
 }
 
-treeTraversalBFS = root => {
+const treeTraversalBFS = root => {
 	if(root === null ){
 		console.log("Tree is empty");
 		return;
@@ -72,4 +72,28 @@ treeTraversalBFS = root => {
 		console.log(queue[0].data);
 		queue.shift();
 	}
+}
+
+const findTheLargestElement = root => {
+	if(root === null){
+		console.log("Empty tree");
+		return null;
+	}
+	let temp = root;
+	while(temp.right !== null){
+		temp = temp.right;
+	}
+	return temp.data;
+}
+
+const findTheSmallestElement = root => {
+	if(root === null){
+		console.log("Empty tree");
+		return null;
+	}
+	let temp = root;
+	while(temp.left !== null){
+		temp = temp.left;
+	}
+	return temp.data;
 }
