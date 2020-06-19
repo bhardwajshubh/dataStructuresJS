@@ -97,3 +97,41 @@ const findTheSmallestElement = root => {
 	}
 	return temp.data;
 }
+
+const dfsInorderTraversal = root => {
+	if(root === null){
+		return;
+	}
+
+	dfsInorderTraversal(root.left);
+
+	console.log(root.data);
+
+	dfsInorderTraversal(root.right);
+
+}
+
+const dfsPreorderTraversal = root => {
+	if(root === null){
+		return;
+	}
+
+	console.log(root.data);
+
+	dfsPreorderTraversal(root.left);
+
+	dfsPreorderTraversal(root.right);
+
+}
+
+const dfsPostorderTraversal = root => {
+	if(root === null){
+		return;
+	}
+
+	dfsPostorderTraversal(root.left);
+
+	dfsPostorderTraversal(root.right);
+
+	console.log(root.data);
+}
