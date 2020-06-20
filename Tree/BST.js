@@ -135,3 +135,67 @@ const dfsPostorderTraversal = root => {
 
 	console.log(root.data);
 }
+
+
+// delete a node which contains the given data
+const deleteANode = (data , root) => {
+	if(root === null) {
+		console.log("Empty tree")
+		return;
+	}
+
+	let temp = root;
+	let prev = root;
+
+	while(data !== temp.data){
+		if(data < temp.data){
+			if(temp.left === null){
+				console.log("No such element found");
+				return -1;
+			}
+			prev = temp;
+			temp = temp.left;
+		}
+
+		if(data > temp.data){
+			if(temp.right === null){
+				console.log("No such element found");
+				return -1;
+			}
+			prev = temp;
+			temp = temp.right;
+		}
+	}
+		
+
+	if(temp.right === null && temp.left === null){ // if it is a leaf node;
+		prev.left === temp ? prev.left = null : prev.right = null;
+		return 1;
+	}
+
+	if(temp.right !== null && temp.left !== null){  // if it contains both child nodes
+		prev.left === temp? prev.left = temp.right : prev.right = temp.right; 
+		let freeLeft = temp.right;
+		let left = temp.left;
+		while(freeLeft.left !== null){
+			console.log("hii");
+			freeLeft = freeLeft.left;
+		}
+		console.log("hii 2")
+		freeLeft.left = left;
+		return 1;
+	}
+
+	if(temp.right !== null || temp.left !== null){ //if it is a branch node;
+		console.log("hello")
+		if(prev.data >= data){
+			prev.left = temp.right !== null ? temp.right : temp.left; 
+			return 1;
+		}  
+				
+		if(prev.data < data) {
+			prev.right = temp.right !== null ? temp.right : temp.left;
+			return 1;
+		}
+	}
+}
