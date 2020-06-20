@@ -174,15 +174,21 @@ const deleteANode = (data , root) => {
 	}
 
 	if(temp.right !== null && temp.left !== null){  // if it contains both child nodes
-		prev.left === temp? prev.left = temp.right : prev.right = temp.right; 
-		let freeLeft = temp.right;
-		let left = temp.left;
-		while(freeLeft.left !== null){
-			console.log("hii");
-			freeLeft = freeLeft.left;
+		let leftLeaf = temp.right;
+		let leftLeafPrev = temp;
+		while(leftLeaf.left !== null && leftLeaf.right !== null){
+			leftLeafPrev = leftLeaf;
+			leftLeaf = leftLeaf.left;
+			if(leftLeaf.right !== null){
+				leftLeafPrev = leftLeaf;
+				leftLeaf = leftLeaf.right;
+			}
 		}
-		console.log("hii 2")
-		freeLeft.left = left;
+		let tempRoot = leftLeaf;
+		leftLeafPrev.left === leftLeaf ? leftLeafPrev.left = null : leftLeafPrev.right = null;
+		tempRoot.right = temp.right;
+		tempRoot.left = temp.left;
+		prev.left === temp ? prev.left = tempRoot : prev.right = tempRoot;
 		return 1;
 	}
 
