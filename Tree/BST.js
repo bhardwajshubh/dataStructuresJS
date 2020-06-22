@@ -179,6 +179,9 @@ const deleteANode = (data , root) => {
 		while(leftLeaf.left !== null && leftLeaf.right !== null){
 			leftLeafPrev = leftLeaf;
 			leftLeaf = leftLeaf.left;
+			if(leftLeaf.left !== null)
+				continue;
+
 			if(leftLeaf.right !== null){
 				leftLeafPrev = leftLeaf;
 				leftLeaf = leftLeaf.right;
