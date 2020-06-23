@@ -1,5 +1,5 @@
 // optimized bubble sort
-const bubbleSort = function(arr){
+const bubbleSort = arr => {
 	if(arr === null || arr.length === 0){
 		console.log("Please enter array to be sorted");
 		return;
